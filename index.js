@@ -21,16 +21,16 @@ require('http')
     }).toString())
   } else if (req.url === '/fetch/') {
     const filePath = path.join(__dirname, 'index.html');
-    const stat = fileSystem.statSync(filePath);
+    const stat = fs.statSync(filePath);
 
-    response.writeHead(200, {
+    res.writeHead(200, {
       'Content-Type': 'text/html',
       'Content-Length': stat.size
     });
 
-    fileSystem.
+    fs.
     createReadStream(filePath).
-    pipe(response);
+    pipe(res);
   }
   res.end('alisefox');
 })
