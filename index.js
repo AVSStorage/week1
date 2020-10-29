@@ -13,7 +13,7 @@ require('http')
   res.writeHead(200, CORS);
   if (req.url === '/login/') {
     return res.end('alisefox');
-  } else if(req.url === '/sample/') {
+  } else if(req.url === '/promise/') {
     return res.end((function task(x) {
       return new Promise((resolve, reject) => {
         if (x < 18) { resolve('yes')} else { reject('no') }
