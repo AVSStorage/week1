@@ -11,6 +11,7 @@ require('http')
     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers'
 };
 
+  res.writeHead(200, CORS);
   if (req.url === '/login/') {
     return res.end('alisefox');
   } else if(req.url === '/promise/') {
@@ -34,9 +35,10 @@ require('http')
 
 
 
-  }
+  } else {
 
-  res.writeHead(200, CORS);
-  res.end('alisefox');
+
+    res.end('alisefox');
+  }
 })
 .listen(process.env.PORT);
