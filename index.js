@@ -10,7 +10,7 @@ require('http')
     'Access-Control-Allow-Methods': 'GET,POST,DELETE',
     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers'
 };
-  res.writeHead(200, CORS);
+
   if (req.url === '/login/') {
     return res.end('alisefox');
   } else if(req.url === '/promise/') {
@@ -24,6 +24,7 @@ require('http')
     const stat = fs.statSync(filePath);
 
     res.writeHead(200, {
+      ...CORS,
       'Content-Type': 'text/html',
       'Content-Length': stat.size
     });
@@ -32,6 +33,8 @@ require('http')
     createReadStream(filePath).
     pipe(res);
   }
+
+  res.writeHead(200, CORS);
   res.end('alisefox');
 })
 .listen(process.env.PORT);
