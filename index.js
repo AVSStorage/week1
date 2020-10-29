@@ -21,7 +21,6 @@ require('http')
     }).toString())
   } else if (req.url === '/fetch/') {
     const filePath = path.join(__dirname, 'index.html');
-    const stat = fs.statSync(filePath);
 
     res.writeHead(200, {
       ...CORS,
@@ -29,9 +28,13 @@ require('http')
       'Content-Length': stat.size
     });
 
-    fs.
-    createReadStream(filePath).
-    pipe(res);
+    fs.readFile(filePath, (err, html) => {
+      res.write(html);
+      res.end();
+    });
+
+
+
   }
 
   res.writeHead(200, CORS);
