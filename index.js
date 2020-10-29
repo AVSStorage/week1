@@ -24,8 +24,7 @@ require('http')
 
     res.writeHead(200, {
       ...CORS,
-      'Content-Type': 'text/html',
-      'Content-Length': stat.size
+      'Content-Type': 'text/html'
     });
 
     fs.readFile(filePath, (err, html) => {
