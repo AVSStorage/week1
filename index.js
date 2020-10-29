@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path');
 require('http')
 .Server((req, res) => {
 
@@ -13,8 +15,22 @@ require('http')
     return res.end('alisefox');
   } else if(req.url === '/sample/') {
     return res.end((function task(x) {
-      return x * this ** 2
+      return new Promise((resolve, reject) => {
+        if (x < 18) { resolve('yes')} else { reject('no') }
+      })
     }).toString())
+  } else if (req.url === '/fetch/') {
+    const filePath = path.join(__dirname, 'index.html');
+    const stat = fileSystem.statSync(filePath);
+
+    response.writeHead(200, {
+      'Content-Type': 'text/html',
+      'Content-Length': stat.size
+    });
+
+    fileSystem.
+    createReadStream(filePath).
+    pipe(response);
   }
   res.end('alisefox');
 })
