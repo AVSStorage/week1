@@ -17,8 +17,8 @@ require('http')
     let body = '';
     req.on('data', function (chunk) {
       body += chunk;
-    }).on('end', (bodyData) => {
-      return res.end(JSON.stringify({...data, 'x-body': bodyData}))
+    }).on('end', () => {
+      return res.end(JSON.stringify({...data, 'x-body': body}))
     });
 
 
